@@ -3,6 +3,8 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
+import requests
+import io
 
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import MinMaxScaler
@@ -84,18 +86,31 @@ def train_lstm_model(X_train, y_train, time_step):
 
 # --- Streamlit App ---
 
-st.title("📈 Stock Market Price Prediction System")
+st.title("\U0001F4C8 Stock Market Price Prediction System")
 
 # Layout for inputs
 col1, col2 = st.columns(2)
 
+@st.cache_data(show_spinner=False)
+def fetch_nifty50_tickers():
+    try:
+        url = "https://www1.nseindia.com/content/indices/ind_nifty50list.csv"
+        headers = {"User-Agent": "Mozilla/5.0"}
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        df = pd.read_csv(io.StringIO(response.text))
+        return sorted([symbol + ".NS" for symbol in df["Symbol"].dropna()])
+    except Exception as e:
+        st.warning(f"Could not fetch Nifty 50 tickers. Falling back to default list. Error: {e}")
+        return ["RELIANCE.NS", "TCS.NS", "INFY.NS", "HDFCBANK.NS", "ICICIBANK.NS"]
+
 with col1:
-    default_tickers = ["AAPL", "TCS.NS", "INFY.NS", "GOOGL", "MSFT"]
+    nifty_tickers = fetch_nifty50_tickers()
     custom_ticker = st.text_input("Enter a custom stock ticker (e.g., RELIANCE.NS, TSLA):").strip().upper()
     if custom_ticker:
         selected_ticker = custom_ticker
     else:
-        selected_ticker = st.selectbox("Or select from default stocks:", default_tickers)
+        selected_ticker = st.selectbox("Or select from Nifty 50 stocks:", nifty_tickers)
 
 with col2:
     today = datetime.today()
@@ -105,7 +120,6 @@ with col2:
 if start_date >= end_date:
     st.error("Error: End date must be after start date.")
     st.stop()
-
 # Model and prediction parameters in expander
 with st.expander("Model & Prediction Parameters", expanded=True):
     model_choice = st.radio("Choose Prediction Model:", ["Random Forest", "LSTM"])
