@@ -253,7 +253,7 @@ st.download_button(
     mime="text/csv"
 )
 
-)
+
 
 # --- Footer / Watermark ---
 footer_html = """
