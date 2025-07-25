@@ -252,13 +252,6 @@ st.download_button(
     file_name=f"{selected_ticker}_predictions_only.csv",
     mime="text/csv"
 )
-st.download_button(
-    label="Download Only Predictions as CSV",
-    data=pred_csv_buffer.getvalue(),
-    file_name=f"{selected_ticker}_predictions_only.csv",
-    mime="text/csv",
-    key="download_pred_csv"
-)
 
 )
 
