@@ -255,7 +255,7 @@ st.download_button(
 
 
 # --- Styled Footer ---
-st.markdown("""
+st.markdown(""
 <style>
 .footer {
     position: relative;
