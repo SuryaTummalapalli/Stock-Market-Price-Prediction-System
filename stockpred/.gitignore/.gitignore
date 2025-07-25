@@ -1,0 +1,18 @@
+# Ignore Python environments
+.venv/
+env/
+Lib/
+Scripts/
+stockpred-env/
+pyenv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.dll
+*.so
+
+# Ignore IDE settings
+.idea/
+.vscode/
+*.iml
