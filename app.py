@@ -254,8 +254,13 @@ st.download_button(
 )
 
 
-# --- Styled Footer ---
-st.markdown(""
+
+
+
+
+
+# --- Footer / Watermark ---
+st.markdown("""
 <style>
 .footer {
     position: relative;
@@ -268,10 +273,21 @@ st.markdown(""
     padding: 10px 0;
     border-top: 1px solid #ddd;
 }
+.footer a {
+    color: #1f77b4;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+</style>
 
+<div class="footer">
+    Created by <strong>Surya Teja</strong> | 📧 <a href="mailto:suryatummalapali@gmail.com">suryatummalapali@gmail.com</a> | 📱 +91 90007 19179
+    <br>
+    💡 Tip: For better predictions, use at least 3 months of data and tune time steps based on market trend.
+</div>
+""", unsafe_allow_html=True)
 
-
-
-# --- Footer / Watermark ---
 
 # --- End of Streamlit App ---
