@@ -284,23 +284,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<style>
-.stButton>button {
-    background-color: #007acc;
-    color: white;
-    border-radius: 10px;
-    padding: 10px 24px;
-    font-weight: bold;
-    transition: 0.3s ease;
-}
-.stButton>button:hover {
-    background-color: #005f99;
-    transform: scale(1.02);
-}
-</style>
-""", unsafe_allow_html=True)
-
 
 
 # --- Footer / Watermark ---
