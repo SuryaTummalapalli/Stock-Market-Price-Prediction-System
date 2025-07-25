@@ -273,16 +273,5 @@ st.markdown("""
 
 
 # --- Footer / Watermark ---
-footer_html = """
-<hr style="margin-top: 50px;"/>
-<div style="text-align: center; font-size: 14px; color: gray;">
-    Created by <strong>Surya Teja</strong> | 📧 <a href="mailto:suryatummalapali@gmail.com">suryatummalapali@gmail.com</a> | 📱 +91 90007 19179
-    <br>
-    💡 <em>Tip:</em> For better predictions, ensure your date range includes at least 3 months of data and adjust lag/time steps based on recent market volatility.
-    <br><br>
-</div>
-"""
-
-st.markdown(footer_html, unsafe_allow_html=True)
 
 # --- End of Streamlit App ---
